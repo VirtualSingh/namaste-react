@@ -1,6 +1,17 @@
-import { createElement } from "react";
 import { createRoot } from "react-dom/client";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import Body from "./Components/Body";
+import "./App.css";
 
-const h1 = createElement("h1", {}, "Hello world from  React");
+function AppLayout() {
+  return (
+    <>
+      <Header />
+      <Body />
+      <Footer />
+    </>
+  );
+}
 const root = document.querySelector("#root");
-createRoot(root).render(h1);
+createRoot(root).render(<AppLayout />);
