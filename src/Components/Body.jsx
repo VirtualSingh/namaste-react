@@ -1,11 +1,21 @@
 import RestaurentCard from "./RestaurentCard";
 import { useEffect, useState } from "react";
+import { API_URL } from "../utils/constants";
+import Shimmer from "./Shimmer";
 
 async function fetchProducts(setProducts) {
   try {
-    const res = await fetch("https://dummyjson.com/products");
+    const res = await fetch(API_URL);
     const data = await res.json();
-    setProducts(data?.products);
+
+    console.log(
+      data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setProducts(
+      data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   } catch (err) {
     console.error(err.message);
   }
@@ -18,7 +28,9 @@ export default function Body() {
     fetchProducts(setProducts);
   }, []);
 
-  return (
+  return !products.length ? (
+    <Shimmer />
+  ) : (
     <main>
       <h1>Restaurents</h1>
       <div
@@ -32,7 +44,7 @@ export default function Body() {
         }}
       >
         {products?.map((product) => (
-          <RestaurentCard key={product.id} {...product} />
+          <RestaurentCard key={product.info.id} {...product.info} />
         ))}
       </div>
     </main>

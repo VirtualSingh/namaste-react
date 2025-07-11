@@ -47,6 +47,7 @@ header nav ul {
   width: 100%;
   object-fit: cover;
   display: block;
+  height: 160px;
 }
 
 .card-info {
@@ -70,4 +71,6 @@ header nav ul {
   font-size: 0.9rem;
   color: #444;
   font-weight: 500;
+}
+.res-container {
 }
