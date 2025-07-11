@@ -1,34 +1,8 @@
 import RestaurentCard from "./RestaurentCard";
-import { useEffect, useState } from "react";
-import { API_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 
-async function fetchProducts(setProducts) {
-  try {
-    const res = await fetch(API_URL);
-    const data = await res.json();
-
-    console.log(
-      data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    setProducts(
-      data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-  } catch (err) {
-    console.error(err.message);
-  }
-}
-
-export default function Body() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetchProducts(setProducts);
-  }, []);
-
-  return !products.length ? (
+export default function Body({ restaurants }) {
+  return !restaurants.length ? (
     <Shimmer />
   ) : (
     <main>
@@ -43,7 +17,7 @@ export default function Body() {
           justifyContent: "center",
         }}
       >
-        {products?.map((product) => (
+        {restaurants?.map((product) => (
           <RestaurentCard key={product.info.id} {...product.info} />
         ))}
       </div>
