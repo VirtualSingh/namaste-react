@@ -6,12 +6,16 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { API_URL } from "./utils/constants";
 
-async function fetchRestaurants(setRestaurants) {
+async function fetchRestaurants(setRestaurants, setFilteredRestaurants) {
   try {
     const res = await fetch(API_URL);
     const data = await res.json();
 
     setRestaurants(
+      data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setFilteredRestaurants(
       data?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
@@ -22,17 +26,18 @@ async function fetchRestaurants(setRestaurants) {
 
 function AppLayout() {
   const [restaurants, setRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   function filterRestaurants() {
     const filteredRestaurants = restaurants.filter((res) =>
       res?.info?.name.toLowerCase().includes(searchText.toLowerCase())
     );
-    setRestaurants(filteredRestaurants);
+    setFilteredRestaurants(filteredRestaurants);
   }
 
   useEffect(() => {
-    fetchRestaurants(setRestaurants);
+    fetchRestaurants(setRestaurants, setFilteredRestaurants);
   }, []);
 
   return (
@@ -42,7 +47,7 @@ function AppLayout() {
         setSearchText={setSearchText}
         searchText={searchText}
       />
-      <Body restaurants={restaurants} />
+      <Body restaurants={filteredRestaurants} />
       <Footer />
     </>
   );
