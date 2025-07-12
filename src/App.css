@@ -7,6 +7,10 @@
   font-family: Segoe UI, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 header {
   padding: 0 24px;
   height: 72px;
@@ -194,4 +198,80 @@ header nav ul {
     flex-wrap: wrap;
     gap: 20px;
   }
+}
+
+/* ----------restaurant menu------------- */
+
+.pizza-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #ddd;
+  padding: 16px 0;
+}
+
+.pizza-info {
+  max-width: 70%;
+}
+
+.pizza-title {
+  margin: 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.pizza-price {
+  margin: 6px 0;
+  font-weight: bold;
+  font-size: 16px;
+  color: #111;
+}
+
+.pizza-rating {
+  margin: 4px 0;
+  color: #1ba672;
+  font-size: 14px;
+}
+
+.pizza-description {
+  color: #555;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.more-text {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pizza-image-section {
+  text-align: center;
+  width: 120px;
+}
+
+.pizza-image {
+  width: 100px;
+  border-radius: 8px;
+}
+
+.add-button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #1ba672;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #f2f2f2;
+}
+
+.customisable-text {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
 }
