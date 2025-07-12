@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 export default function Header({
   filterRestaurants,
   setSearchText,
@@ -22,10 +22,18 @@ export default function Header({
 
       <nav className="nav">
         <ul className="nav-list">
-          <li className="nav-item">Home</li>
-          <li className="nav-item">About</li>
-          <li className="nav-item">Blog</li>
-          <li className="nav-item">Contact</li>
+          <Link to="/" className="nav-item">
+            Home
+          </Link>
+          <Link to="/about" className="nav-item">
+            About
+          </Link>
+          <Link to="/blog" className="nav-item">
+            Blog
+          </Link>
+          <Link to="/contact" className="nav-item">
+            Contact
+          </Link>
         </ul>
       </nav>
     </header>
