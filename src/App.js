@@ -11,19 +11,18 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Blog from "./Components/Blog";
 import NotFound from "./Components/NotFound";
+import RestaurantMenu from "./Components/RestaurantMenu";
 
 export const routerConfig = createBrowserRouter([
   {
     path: "/",
-    Component: AppLayout,
+    element: <AppLayout />,
     errorElement: <NotFound />,
-    children: [
-      { path: "/", Component: Body },
-      { path: "/about", Component: About },
-      { path: "/contact", Component: Contact },
-      { path: "/blog", Component: Blog },
-    ],
   },
+  { path: "/about", element: <About /> },
+  { path: "/contact", element: <Contact /> },
+  { path: "/blog", element: <Blog /> },
+  { path: "/restaurants/:id", element: <RestaurantMenu /> },
 ]);
 
 async function fetchRestaurants(setRestaurants, setFilteredRestaurants) {
