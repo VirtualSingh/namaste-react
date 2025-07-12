@@ -5,6 +5,26 @@ import Body from "./Components/Body";
 import "./App.css";
 import { useState, useEffect } from "react";
 import { API_URL } from "./utils/constants";
+import { RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import Blog from "./Components/Blog";
+import NotFound from "./Components/NotFound";
+
+export const routerConfig = createBrowserRouter([
+  {
+    path: "/",
+    Component: AppLayout,
+    errorElement: <NotFound />,
+    children: [
+      { path: "/", Component: Body },
+      { path: "/about", Component: About },
+      { path: "/contact", Component: Contact },
+      { path: "/blog", Component: Blog },
+    ],
+  },
+]);
 
 async function fetchRestaurants(setRestaurants, setFilteredRestaurants) {
   try {
@@ -52,5 +72,5 @@ function AppLayout() {
     </>
   );
 }
-const root = document.querySelector("#root");
-createRoot(root).render(<AppLayout />);
+const root = createRoot(document.querySelector("#root"));
+root.render(<RouterProvider router={routerConfig} />);
