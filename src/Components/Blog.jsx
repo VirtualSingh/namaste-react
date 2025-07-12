@@ -1,3 +1,12 @@
+import Header from "./Header";
+import Footer from "./Footer";
+
 export default function Blog() {
-  return <p>Blog Component</p>;
+  return (
+    <>
+      <Header />
+      <p>Blog Component</p>
+      <Footer />
+    </>
+  );
 }

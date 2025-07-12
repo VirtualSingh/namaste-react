@@ -1,3 +1,12 @@
+import Header from "./Header";
+import Footer from "./Footer";
+
 export default function About() {
-  return <p>About Component</p>;
+  return (
+    <>
+      <Header />
+      <p>About Component</p>
+      <Footer />
+    </>
+  );
 }
