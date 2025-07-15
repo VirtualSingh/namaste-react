@@ -3,15 +3,17 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import Body from "./Components/Body";
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { API_URL } from "./utils/constants";
 import { RouterProvider, Outlet } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
-import About from "./Components/About";
+// import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Blog from "./Components/Blog";
 import NotFound from "./Components/NotFound";
 import RestaurantMenu from "./Components/RestaurantMenu";
+
+const About = lazy(() => import("./Components/About"));
 
 export const routerConfig = createBrowserRouter([
   {
@@ -72,4 +74,8 @@ function AppLayout() {
   );
 }
 const root = createRoot(document.querySelector("#root"));
-root.render(<RouterProvider router={routerConfig} />);
+root.render(
+  <Suspense fallback={"something broke"}>
+    <RouterProvider router={routerConfig} />
+  </Suspense>
+);
