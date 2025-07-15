@@ -23,3 +23,14 @@ export default function RestaurentCard({
     </div>
   );
 }
+
+export function withPromotedLabel(RestaurentCard) {
+  return function (props) {
+    return (
+      <div>
+        <span>Promoted</span>
+        <RestaurentCard {...props} />
+      </div>
+    );
+  };
+}

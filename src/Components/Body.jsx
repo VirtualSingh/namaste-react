@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import RestaurentCard from "./RestaurentCard";
+import RestaurentCard, { withPromotedLabel } from "./RestaurentCard";
 import Shimmer from "./Shimmer";
 
 export default function Body({ restaurants }) {
+  const PromotedRestaurant = withPromotedLabel(RestaurentCard);
   return !restaurants.length ? (
     <Shimmer />
   ) : (
@@ -20,7 +21,11 @@ export default function Body({ restaurants }) {
       >
         {restaurants?.map((product) => (
           <Link to={"/restaurants/" + product.info.id} key={product.info.id}>
-            <RestaurentCard {...product.info} />
+            {product?.info.promoted ? (
+              <PromotedRestaurant {...product.info} />
+            ) : (
+              <RestaurentCard {...product.info} />
+            )}
           </Link>
         ))}
       </div>
